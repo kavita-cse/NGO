@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get Involved - Kaarn Social Welfare Foundation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,700;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav-container">
+        <div class="logo">
+          <a href="index.html" class="flex items-center"
+            ><img src="images/kswf-logo.png" alt="KSWF Logo"
+          /></a>
+        </div>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="programs.html">Projects</a>
+          <a href="contact.html">contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section container">
+        <h1
+          class="text-center mb-2"
+          style="font-size: 3rem; color: var(--button-bg)"
+        >
+          Volunteer With Us
+        </h1>
+
+        <p
+          class="text-center font-sans text-muted mb-3"
+          style="
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+          "
+        >
+          Join our network of passionate individuals who are dedicated to
+          creating a positive change. Whether you have a few hours a week or are
+          looking for a full-time internship, there's a place for you at SAKHI.
+        </p>
+
+        <div class="flex gap-4 flex-wrap">
+          <!-- Opportunities -->
+          <div style="flex: 1; min-width: 300px">
+            <h2
+              class="mb-1-5"
+              style="
+                font-size: 2rem;
+                border-bottom: 2px solid var(--card-bg);
+                padding-bottom: 0.5rem;
+              "
+            >
+              Opportunities
+            </h2>
+
+            <div
+              class="card card-light mb-1-5"
+              style="border-left: 4px solid var(--button-bg); padding: 1.5rem"
+            >
+              <h3 class="mb-0-5">
+                <i
+                  class="fas fa-hands-helping"
+                  style="margin-right: 10px; color: #e53935"
+                ></i
+                >Volunteer
+              </h3>
+              <p class="font-sans text-muted" style="font-size: 0.95rem">
+                Participate in weekend drives, awareness campaigns, and field
+                activities. Perfect for those who want to contribute directly to
+                the community.
+              </p>
+            </div>
+
+            <div
+              class="card card-light mb-1-5"
+              style="border-left: 4px solid var(--button-bg); padding: 1.5rem"
+            >
+              <h3 class="mb-0-5">
+                <i
+                  class="fas fa-laptop-code"
+                  style="margin-right: 10px; color: #4caf50"
+                ></i
+                >Intern
+              </h3>
+              <p class="font-sans text-muted" style="font-size: 0.95rem">
+                Gain valuable experience in non-profit management, social media
+                marketing, research, and event planning. Minimum 3 months
+                commitment.
+              </p>
+            </div>
+
+            <div
+              class="card card-light mb-1-5"
+              style="border-left: 4px solid var(--button-bg); padding: 1.5rem"
+            >
+              <h3 class="mb-0-5">
+                <i
+                  class="fas fa-users"
+                  style="margin-right: 10px; color: #ff9800"
+                ></i
+                >Community Participation
+              </h3>
+              <p class="font-sans text-muted" style="font-size: 0.95rem">
+                Become a local ambassador. Help us spread awareness in your
+                immediate neighborhood, school, or workplace.
+              </p>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <div class="flex-1" style="min-width: 300px">
+            <div class="card" style="background-color: var(--card-bg)">
+              <h2 class="mb-1-5" style="font-size: 1.8rem">Application Form</h2>
+              <form
+                action="#"
+                method="POST"
+                onsubmit="
+                  event.preventDefault();
+                  alert('Application submitted! We will contact you soon.');
+                "
+              >
+                <div class="form-group">
+                  <label class="form-label">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    required
+                    placeholder="Your full name"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    required
+                    placeholder="Your email address"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Phone</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    required
+                    placeholder="Your phone number"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Area of Interest</label>
+                  <select class="form-control font-sans" required>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="volunteer">General Volunteer</option>
+                    <option value="intern">Internship</option>
+                    <option value="community">Community Ambassador</option>
+                    <option value="skills">
+                      Pro-bono Skills (Design, Tech, Legal)
+                    </option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label"
+                    >Message / Why do you want to join?</label
+                  >
+                  <textarea
+                    class="form-control"
+                    placeholder="Tell us a bit about yourself..."
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn w-full"
+                  style="font-size: 1.1rem"
+                >
+                  Join Now
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="programs.html">Projects</a>
+          <a href="donate.html">Donate</a>
+          <a href="get-involved.html">Get Involved</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-text">
+          &copy; 2026 Kaarn Social Welfare Foundation. All rights reserved.
+        </p>
+      </div>
+    </footer>
+    <script src="js/main.js"></script>
+  </body>
+</html>

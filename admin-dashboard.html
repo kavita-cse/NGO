@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - KSWF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,700;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+      body {
+        display: flex;
+        min-height: 100vh;
+        background-color: var(--bg-color);
+        margin: 0;
+      }
+      .sidebar {
+        width: 250px;
+        background-color: white;
+        border-right: 1px solid #eee;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+      }
+      .sidebar img {
+        max-width: 120px;
+        margin-bottom: 3rem;
+      }
+      .nav-item {
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+        border-radius: 8px;
+        color: var(--text-color);
+        text-decoration: none;
+        font-family: var(--font-sans);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: background 0.2s;
+      }
+      .nav-item:hover, .nav-item.active {
+        background-color: var(--bg-color);
+        color: var(--button-bg);
+      }
+      .main-content {
+        flex: 1;
+        padding: 3rem;
+        overflow-y: auto;
+      }
+      .dashboard-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+      .card-form {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        max-width: 800px;
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+      .form-group.full-width {
+        grid-column: 1 / -1;
+      }
+      #status-message {
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        font-family: var(--font-sans);
+        display: none;
+      }
+      #status-message.success {
+        background-color: #e8f5e9;
+        color: #2e7d32;
+        display: block;
+      }
+      #status-message.error {
+        background-color: #ffebee;
+        color: #c62828;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <img src="images/kswf-logo.png" alt="KSWF Logo" />
+      <nav>
+        <a href="#" class="nav-item active" id="nav-events">
+          <i class="fas fa-calendar-plus"></i> Publish Event
+        </a>
+        <a href="#" class="nav-item" id="nav-posts">
+          <i class="fas fa-camera"></i> Create Post (Completed)
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="dashboard-header">
+        <h1 style="font-size: 2.2rem">Admin Dashboard</h1>
+        <p class="font-sans text-muted" id="user-email">Welcome, Admin</p>
+      </div>
+
+      <!-- Events Section -->
+      <div id="section-events" class="card-form">
+        <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem;">
+          Publish Upcoming Event
+        </h2>
+        
+        <div id="status-message"></div>
+
+        <form id="create-event-form">
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label class="form-label">Event Name <span style="color:red">*</span></label>
+              <input type="text" id="event-name" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Date</label>
+              <input type="date" id="event-date" class="form-control" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Location</label>
+              <input type="text" id="event-location" class="form-control" placeholder="e.g. New Delhi" />
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label">Images <span class="text-muted" style="font-weight:400; font-size: 0.85rem">(Select multiple files)</span></label>
+              <input type="file" id="event-images" class="form-control" accept="image/*" multiple />
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label">Description</label>
+              <textarea id="event-description" class="form-control" rows="5" placeholder="Details about the event..."></textarea>
+            </div>
+          </div>
+          
+          <button type="submit" class="btn mt-2" id="publish-btn" style="padding: 1rem 2rem; font-size: 1.1rem;">
+            <i class="fas fa-paper-plane mr-1"></i> Publish Event
+          </button>
+        </form>
+      </div>
+
+      <!-- Posts Section -->
+      <div id="section-posts" class="card-form" style="display: none;">
+        <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem;">
+          Create Post (Completed Event)
+        </h2>
+        
+        <div id="post-status-message"></div>
+
+        <form id="create-post-form">
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label class="form-label">Program Name <span style="color:red">*</span></label>
+              <select id="post-program" class="form-control font-sans" required>
+                <option value="" disabled selected>Select the related program</option>
+                <option value="Social Awareness">Social Awareness</option>
+                <option value="Health & Hygiene">Health & Hygiene</option>
+                <option value="Civic Sense">Civic Sense</option>
+                <option value="Environmental Responsibility">Environmental Responsibility</option>
+              </select>
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label">Post Images <span class="text-muted" style="font-weight:400; font-size: 0.85rem">(Select multiple photos)</span> <span style="color:red">*</span></label>
+              <input type="file" id="post-images" class="form-control" accept="image/*" multiple required />
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label">Caption <span style="color:red">*</span></label>
+              <textarea id="post-caption" class="form-control" rows="4" placeholder="Write a caption for your post..." required></textarea>
+            </div>
+          </div>
+          
+          <button type="submit" class="btn mt-2" id="publish-post-btn" style="padding: 1rem 2rem; font-size: 1.1rem; background-color: #8bc34a;">
+            <i class="fas fa-camera mr-1"></i> Publish Post
+          </button>
+        </form>
+      </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/supabase-config.js"></script>
+    <script src="js/admin-auth.js"></script>
+    <script src="js/admin-events.js"></script>
+    <script src="js/admin-posts.js"></script>
+    <script src="js/admin-ui.js"></script>
+  </body>
+</html>
