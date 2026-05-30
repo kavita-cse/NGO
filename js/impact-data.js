@@ -1,0 +1,150 @@
+/**
+ * Data Access Layer for Impact Stories (Highlights, Spotlight, Posts)
+ * Connected to Supabase with fallback to mock data
+ */
+
+const fallbackHighlights = [
+  { id: 'h1', title: 'Tree Plantation', coverImage: 'images/hero_uploaded_image.png', date: '12 May 2026', location: 'Central Park', shortDescription: 'Planted 100 saplings.', fullDescription: 'A successful tree plantation drive where volunteers from all over the city joined to plant 100 saplings.', impactText: '100 Saplings Planted', category: 'Environment', status: 'Published', order: 1 },
+  { id: 'h2', title: 'Health Camp', coverImage: 'images/people_circle_1777609298590.png', date: '14 May 2026', location: 'Community Center', shortDescription: 'Free checkups for all.', fullDescription: 'Provided free health checkups and basic medicines to over 200 individuals.', impactText: '200+ People Treated', category: 'Health', status: 'Published', order: 2 },
+  { id: 'h3', title: 'Education Drive', coverImage: 'images/hero_banner_1777609201857.png', date: '16 May 2026', location: 'City School', shortDescription: 'Distributed books.', fullDescription: 'Distributed textbooks and stationary to underprivileged children.', impactText: '500+ Books Donated', category: 'Education', status: 'Published', order: 3 }
+];
+
+const fallbackPosts = [
+  { id: 'p1', title: 'Clean Water Initiative', category: 'Health', image: 'images/hero_uploaded_image.png', date: '10 May 2026', location: 'North District', shortDescription: 'Providing clean water filters to 100 families.', fullDescription: 'Access to clean water is a fundamental human right. Our team distributed 100 advanced water filtration units to families lacking access to safe drinking water, drastically reducing the risk of waterborne diseases.', impactText: '100 Filters Distributed', status: 'Published' },
+  { id: 'p2', title: 'Community Green Day', category: 'Environment', image: 'images/hero_banner_1777609201857.png', date: '12 May 2026', location: 'Park Avenue', shortDescription: 'Planted 500 trees in the local park.', fullDescription: 'In our effort to increase the green cover, we organized a massive tree plantation drive. Over 50 volunteers participated to plant native tree species that require less water and provide more shade.', impactText: '500 Trees Planted', status: 'Published' },
+  { id: 'p3', title: 'Women Empowerment Workshop', category: 'Social Awareness', image: 'images/people_circle_1777609298590.png', date: '15 May 2026', location: 'Town Hall', shortDescription: 'Skill building for women entrepreneurs.', fullDescription: 'A 3-day workshop focusing on financial literacy, small business management, and digital marketing skills to empower local women to start and scale their own businesses.', impactText: '50 Women Certified', status: 'Published' }
+];
+
+const fallbackSpotlight = { 
+  id: 's1', 
+  title: 'Mega Food Drive', 
+  category: 'Community Support', 
+  image: 'images/hero_banner_1777609201857.png', 
+  shortDescription: 'Join our massive initiative to ensure no one in our city goes to bed hungry. We are scaling up our food distribution network.', 
+  fullDescription: 'Our Mega Food Drive aims to collect and distribute nutritious meals to vulnerable communities across the city. By partnering with local restaurants, supermarkets, and a network of dedicated volunteers, we are recovering surplus food and delivering it to those who need it most.',
+  impactStat1: '5000+ Meals', 
+  impactStat2: '10 Areas', 
+  impactStat3: '200 Volunteers', 
+  buttonText: 'Get Involved Today', 
+  buttonLink: '#', 
+  isSpotlight: true, 
+  status: 'Active' 
+};
+
+window.ImpactData = {
+  // HIGHLIGHTS
+  getHighlights: async () => {
+    try {
+      const { data, error } = await window.supabaseClient
+        .from('ngo_highlights')
+        .select('*')
+        .order('order', { ascending: true });
+      if (error) throw error;
+      return data;
+    } catch (err) {
+      console.warn('Supabase fetch failed for highlights, using fallback data.', err);
+      return fallbackHighlights;
+    }
+  },
+  
+  saveHighlights: async (highlights) => {
+    try {
+      const { error } = await window.supabaseClient
+        .from('ngo_highlights')
+        .upsert(highlights);
+      if (error) throw error;
+    } catch (err) {
+      console.error('Error saving highlights:', err);
+    }
+  },
+
+  deleteHighlight: async (id) => {
+    try {
+      const { error } = await window.supabaseClient
+        .from('ngo_highlights')
+        .delete()
+        .eq('id', id);
+      if (error) throw error;
+    } catch (err) {
+      console.error('Error deleting highlight:', err);
+    }
+  },
+  
+  // POSTS
+  getPosts: async () => {
+    try {
+      const { data, error } = await window.supabaseClient
+        .from('ngo_posts')
+        .select('*')
+        .order('createdAt', { ascending: false });
+      if (error) throw error;
+      return data;
+    } catch (err) {
+      console.warn('Supabase fetch failed for posts, using fallback data.', err);
+      return fallbackPosts;
+    }
+  },
+
+  
+  savePosts: async (posts) => {
+    try {
+      const { error } = await window.supabaseClient
+        .from('ngo_posts')
+        .upsert(posts);
+      if (error) throw error;
+    } catch (err) {
+      console.error('Error saving posts:', err);
+    }
+  },
+
+  deletePost: async (id) => {
+    try {
+      const { error } = await window.supabaseClient
+        .from('ngo_posts')
+        .delete()
+        .eq('id', id);
+      if (error) throw error;
+    } catch (err) {
+      console.error('Error deleting post:', err);
+    }
+  },
+
+  // SPOTLIGHT
+  getSpotlight: async () => {
+    try {
+      const { data, error } = await window.supabaseClient
+        .from('ngo_spotlight')
+        .select('*')
+        .eq('isSpotlight', true)
+        .limit(1)
+        .single();
+      
+      if (error && error.code !== 'PGRST116') throw error;
+      return data || fallbackSpotlight;
+    } catch (err) {
+      console.warn('Supabase fetch failed for spotlight, using fallback data.', err);
+      return fallbackSpotlight;
+    }
+  },
+  
+  saveSpotlight: async (spotlight) => {
+    try {
+      await window.supabaseClient
+        .from('ngo_spotlight')
+        .update({ isSpotlight: false })
+        .neq('id', spotlight.id);
+
+      const { error } = await window.supabaseClient
+        .from('ngo_spotlight')
+        .upsert([spotlight]);
+      if (error) throw error;
+    } catch (err) {
+      console.error('Error saving spotlight:', err);
+    }
+  },
+
+  // UTILS
+  generateId: () => {
+    return 'id_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+  }
+};

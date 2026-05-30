@@ -1,20 +1,26 @@
-const { createClient } = require('@supabase/supabase-js');
-
-const SUPABASE_URL = 'https://cbqbqncbjxfwrhhgxmjk.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_XEBmcn5vcJGWBDO3GH9GRw_f55J9d9_';
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+const SUPABASE_URL = 'https://qkvwsepwnsqpcvlfziao.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFrdndzZXB3bnNxcGN2bGZ6aWFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyNDIyNzQsImV4cCI6MjA5MzgxODI3NH0.GrGE-XiPDANFXf-_mAMkI3PpdFyiVXzbXJKDXyyIAFU';
 
 async function createAdmin() {
-  const { data, error } = await supabase.auth.signUp({
-    email: 'admin@kswf.org',
-    password: 'jayshreekrishna',
+  const res = await fetch(`${SUPABASE_URL}/auth/v1/signup`, {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email: 'admin@kswf.org',
+      password: 'jayshreekrishna'
+    })
   });
-
-  if (error) {
-    console.error('Error creating user:', error.message);
+  
+  const data = await res.json();
+  if (res.ok && !data.error) {
+    console.log('User created successfully:', data.email || data.user?.email || data);
   } else {
-    console.log('User created:', data.user?.email);
+    console.error('Error creating user:', data.error_description || data.message || data);
   }
 }
 
 createAdmin();
+

@@ -1,25 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const navEvents = document.getElementById('nav-events');
-  const navPosts = document.getElementById('nav-posts');
-  
-  const sectionEvents = document.getElementById('section-events');
-  const sectionPosts = document.getElementById('section-posts');
+  const navItems = {
+    'nav-highlights': document.getElementById('section-highlights'),
+    'nav-spotlight': document.getElementById('section-spotlight'),
+    'nav-work-updates': document.getElementById('section-work-updates')
+  };
 
-  if (!navEvents || !navPosts) return;
+  const navLinks = Object.keys(navItems).map(id => document.getElementById(id)).filter(el => el);
 
-  navEvents.addEventListener('click', (e) => {
-    e.preventDefault();
-    navEvents.classList.add('active');
-    navPosts.classList.remove('active');
-    sectionEvents.style.display = 'block';
-    sectionPosts.style.display = 'none';
-  });
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // Remove active from all
+      navLinks.forEach(nav => nav.classList.remove('active'));
+      Object.values(navItems).forEach(section => {
+        if(section) section.style.display = 'none';
+      });
 
-  navPosts.addEventListener('click', (e) => {
-    e.preventDefault();
-    navPosts.classList.add('active');
-    navEvents.classList.remove('active');
-    sectionPosts.style.display = 'block';
-    sectionEvents.style.display = 'none';
+      // Add active to clicked
+      link.classList.add('active');
+      const section = navItems[link.id];
+      if (section) section.style.display = 'block';
+    });
   });
 });

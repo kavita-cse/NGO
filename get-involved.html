@@ -28,7 +28,9 @@
           <a href="index.html">Home</a>
           <a href="about.html">About</a>
           <a href="programs.html">Projects</a>
-          <a href="contact.html">contact</a>
+          <a href="blog.html">Blog & Updates</a>
+          <a href="collab.html">Collaboration</a>
+          <a href="contact.html">Contact</a>
         </div>
       </nav>
     </header>
@@ -53,7 +55,7 @@
         >
           Join our network of passionate individuals who are dedicated to
           creating a positive change. Whether you have a few hours a week or are
-          looking for a full-time internship, there's a place for you at SAKHI.
+          looking for a full-time internship, there's a place for you at Kaarn Foundation.
         </p>
 
         <div class="flex gap-4 flex-wrap">
@@ -125,7 +127,7 @@
           </div>
 
           <!-- Form -->
-          <div class="flex-1" style="min-width: 300px">
+          <div id="collab-form" class="flex-1" style="min-width: 300px">
             <div class="card" style="background-color: var(--card-bg)">
               <h2 class="mb-1-5" style="font-size: 1.8rem">Application Form</h2>
               <form
@@ -166,18 +168,16 @@
                   />
                 </div>
 
-                <div class="form-group">
-                  <label class="form-label">Area of Interest</label>
-                  <select class="form-control font-sans" required>
-                    <option value="" disabled selected>Select an option</option>
-                    <option value="volunteer">General Volunteer</option>
-                    <option value="intern">Internship</option>
-                    <option value="community">Community Ambassador</option>
-                    <option value="skills">
-                      Pro-bono Skills (Design, Tech, Legal)
-                    </option>
-                  </select>
-                </div>
+                  <div class="form-group">
+                    <label class="form-label">Area of Interest / Volunteering Role</label>
+                    <select class="form-control font-sans" required>
+                      <option value="" disabled selected>Select an option</option>
+                      <option value="volunteer">General Volunteer</option>
+                      <option value="intern">Internship</option>
+                      <option value="community">Community Ambassador</option>
+                      <option value="skills">Pro-bono Skills (Design, Tech, Legal)</option>
+                    </select>
+                  </div>
 
                 <div class="form-group">
                   <label class="form-label"
@@ -199,6 +199,56 @@
               </form>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- Partner & Collaborate Section -->
+      <section class="section container" style="margin-top: 4rem; padding-top: 2rem; border-top: 2px solid var(--card-bg);">
+        <div class="text-center mb-3">
+          <h2 style="font-size: 2.5rem; color: var(--primary-color);">Partner & Collaborate</h2>
+          <p class="font-sans text-muted" style="max-width: 700px; margin: 0 auto; font-size: 1.1rem; line-height: 1.7;">
+            We believe in the power of collective action. Whether you represent a grassroots NGO, are a digital creator with a voice, or a corporate team looking to drive social impact, let's join forces to create a tangible difference.
+          </p>
+        </div>
+
+        <div class="flex gap-2 flex-wrap vision-mission-flex" style="margin-bottom: 3rem;">
+          <!-- NGOs & Local Teams -->
+          <div class="card flex-1" style="min-width: 280px; padding: 2rem; border-radius: var(--radius-md); background: white; border: 1px solid rgba(0,0,0,0.03); box-shadow: var(--shadow-soft);">
+            <div style="font-size: 2.5rem; color: #e53935; margin-bottom: 1.5rem;">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary-color);">NGOs & Local Teams</h3>
+            <p class="font-sans text-muted" style="font-size: 0.95rem; line-height: 1.6;">
+              Let's co-host awareness drives, share field resources, or collaborate on environmental campaigns. We are stronger when we pool our expertise and networks.
+            </p>
+          </div>
+
+          <!-- Influencers & Creators -->
+          <div class="card flex-1" style="min-width: 280px; padding: 2rem; border-radius: var(--radius-md); background: white; border: 1px solid rgba(0,0,0,0.03); box-shadow: var(--shadow-soft);">
+            <div style="font-size: 2.5rem; color: #ff9800; margin-bottom: 1.5rem;">
+              <i class="fas fa-bullhorn"></i>
+            </div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary-color);">Influencers & Creators</h3>
+            <p class="font-sans text-muted" style="font-size: 0.95rem; line-height: 1.6;">
+              Amplify key social issues using your platform. Use your voice, storytelling, and digital reach to inspire sustainable habits and positive behavioral changes.
+            </p>
+          </div>
+
+          <!-- Corporates & Institutions -->
+          <div class="card flex-1" style="min-width: 280px; padding: 2rem; border-radius: var(--radius-md); background: white; border: 1px solid rgba(0,0,0,0.03); box-shadow: var(--shadow-soft);">
+            <div style="font-size: 2.5rem; color: #4caf50; margin-bottom: 1.5rem;">
+              <i class="fas fa-building"></i>
+            </div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary-color);">Corporates & Brands</h3>
+            <p class="font-sans text-muted" style="font-size: 0.95rem; line-height: 1.6;">
+              Engage your employees in green drives, sponsor critical social initiatives, or co-design meaningful CSR activities tailored to your values.
+            </p>
+          </div>
+        </div>
+
+        <div class="text-center" style="margin-bottom: 2rem;">
+          <p class="font-sans text-muted mb-1" style="font-weight: 600;">Ready to take the first step towards a meaningful partnership?</p>
+          <a href="collab.html" class="btn" style="padding: 0.8rem 2.5rem;">Initiate Collaboration</a>
         </div>
       </section>
     </main>
