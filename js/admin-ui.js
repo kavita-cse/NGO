@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const navItems = {
     'nav-highlights': document.getElementById('section-highlights'),
     'nav-spotlight': document.getElementById('section-spotlight'),
-    'nav-work-updates': document.getElementById('section-work-updates')
+    'nav-work-updates': document.getElementById('section-work-updates'),
+    'nav-inquiries': document.getElementById('section-inquiries')
   };
 
   const navLinks = Object.keys(navItems).map(id => document.getElementById(id)).filter(el => el);

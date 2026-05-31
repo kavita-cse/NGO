@@ -111,6 +111,9 @@
         <a href="#" class="nav-item" id="nav-work-updates">
           <i class="fas fa-newspaper"></i> Work Updates
         </a>
+        <a href="#" class="nav-item" id="nav-inquiries">
+          <i class="fas fa-inbox"></i> Inquiries Portal
+        </a>
       </nav>
     </aside>
 
@@ -216,6 +219,21 @@
           </div>
         </form>
       </div>
+
+      <!-- Inquiries Section -->
+      <div id="section-inquiries" class="card-form" style="display: none; max-width: 1000px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 1rem; margin-bottom: 1.5rem;">
+          <h2 style="font-size: 1.5rem; margin: 0;">Inquiries & Applications</h2>
+          <div class="flex gap-1" style="margin-left: auto;">
+            <button class="btn btn-outline active" id="tab-collabs" style="padding: 0.4rem 1rem; font-size: 0.85rem;">Partnership Requests</button>
+            <button class="btn btn-outline" id="tab-volunteers" style="padding: 0.4rem 1rem; font-size: 0.85rem;">Volunteer Apps</button>
+          </div>
+        </div>
+        
+        <div id="inquiries-table-container">
+          <!-- Inquiries will be dynamically rendered here via JS -->
+        </div>
+      </div>
     </main>
 
     <!-- Scripts -->
@@ -224,5 +242,6 @@
     <script src="js/impact-data.js"></script>
     <script src="js/admin-ui.js"></script>
     <script src="js/admin-impact.js"></script>
+    <script src="js/admin-inquiries.js"></script>
   </body>
 </html>

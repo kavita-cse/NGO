@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Partner & Collaborate - Kaarn Social Welfare Foundation</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container glass">
+        <div class="logo">
+          <a href="index.html">
+            <img src="images/kswf-logo.png" alt="KSWF Logo" />
+          </a>
+        </div>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="programs.html">Projects</a>
+          <a href="blog.html">Blog & Updates</a>
+          <a href="collab.html" class="active">Collaboration</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section (Split Layout) -->
+      <section class="hero-section container">
+        <div class="hero-blob"></div>
+        <div class="hero-grid">
+          <div class="hero-content fade-in-up">
+            <h1>Partner & Collaborate.<br />Multiply Our Impact.</h1>
+            <p>
+              We believe in the power of collective action. Whether you represent
+              a grassroots NGO, are a creator with a digital reach, or a corporate
+              team driving social responsibility, let's pool our resources to build
+              sustainable futures.
+            </p>
+            <div class="flex gap-1" style="flex-wrap: wrap;">
+              <a href="#form-section" class="btn">Initiate Collaboration</a>
+              <a href="programs.html" class="btn btn-accent">Explore Projects</a>
+            </div>
+          </div>
+          <div class="hero-image-wrapper fade-in-up" style="animation-delay: 0.2s;">
+            <img src="images/hero_banner_1777609201857.png" alt="KSWF Collaboration" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Collaboration Pathways -->
+      <section class="container fade-in-up" style="padding: 5rem 0 2rem;">
+        <div class="text-center mb-4">
+          <h2 style="font-size: 2.5rem;">Pathways of Collaboration</h2>
+          <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+            Choose a stream that aligns with your skills, resources, and vision. We provide structured pathways to drive mutual, meaningful outcomes.
+          </p>
+        </div>
+        
+        <div class="programs-grid">
+          <!-- NGO -->
+          <div class="program-card">
+            <div class="program-icon" style="color: #e53935; background: rgba(229,57,53,0.05);"><i class="fas fa-handshake"></i></div>
+            <h3>NGOs & Local Teams</h3>
+            <p>Co-host social drives, share regional field assets, coordinate environmental relief, and amplify civic action campaigns.</p>
+          </div>
+          <!-- Influencer -->
+          <div class="program-card">
+            <div class="program-icon" style="color: #ff9800; background: rgba(255,152,0,0.05);"><i class="fas fa-bullhorn"></i></div>
+            <h3>Influencers & Creators</h3>
+            <p>Raise awareness for critical issues by sharing campaigns, creating impact stories, and inspiring conscious habits.</p>
+          </div>
+          <!-- Corporate -->
+          <div class="program-card">
+            <div class="program-icon" style="color: #4caf50; background: rgba(76,175,80,0.05);"><i class="fas fa-building"></i></div>
+            <h3>Corporates & Brands</h3>
+            <p>Design customizable CSR campaigns, drive tree plantations, sponsor local wellness camps, and engage employees in volunteer programs.</p>
+          </div>
+          <!-- Academic -->
+          <div class="program-card">
+            <div class="program-icon" style="color: #1b5e20; background: rgba(27,94,32,0.05);"><i class="fas fa-university"></i></div>
+            <h3>Academic Institutions</h3>
+            <p>Establish campus chapters, organize student volunteering modules, host interactive workshops, and drive waste management campaigns.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive Form Section -->
+      <section id="form-section" class="container fade-in-up" style="padding: 4rem 0 6rem;">
+        <div style="max-width: 800px; margin: 0 auto;" id="form-card-container">
+          <div class="card glass" style="padding: 3rem; border-radius: var(--radius-lg);">
+            <div class="text-center mb-3">
+              <h2 style="font-size: 2.2rem; color: var(--primary-color);">Let's Start Co-Creating</h2>
+              <p class="font-sans text-muted" style="font-size: 1.05rem;">
+                Select your collaboration stream below to access tailored application fields. Let's make an impact together.
+              </p>
+            </div>
+
+            <form id="collab-form-element">
+              <!-- General Info -->
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label">Full Name *</label>
+                  <input type="text" name="name" class="form-control" required placeholder="Your name" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Email Address *</label>
+                  <input type="email" name="email" class="form-control" required placeholder="Your email address" />
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label">Phone Number *</label>
+                  <input type="tel" name="phone" class="form-control" required placeholder="Your phone number" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Collaboration Stream *</label>
+                  <select id="collab-type" name="collabType" class="form-control font-sans" required>
+                    <option value="" disabled selected>Select partnership type</option>
+                    <option value="ngo">NGO & Grassroots Teams</option>
+                    <option value="creator">Influencer & Digital Creator</option>
+                    <option value="corporate">Corporate Brand & CSR</option>
+                    <option value="academic">Academic Institution</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Dynamic Fields Injection Area -->
+              <div id="dynamic-fields" style="display: none; margin-top: 1rem; margin-bottom: 1.5rem; padding: 1.5rem; background: rgba(27, 94, 32, 0.03); border-radius: var(--radius-sm); border-left: 4px solid var(--accent-color);">
+                <!-- Injected dynamically via js/collab.js -->
+              </div>
+
+              <!-- Message -->
+              <div class="form-group">
+                <label class="form-label">Message / Partnership Details</label>
+                <textarea
+                  name="message"
+                  class="form-control"
+                  placeholder="Tell us a little bit about what you have in mind..."
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn w-full mt-2" style="font-size: 1.1rem; padding: 1rem;">
+                Submit Inquiry <i class="fas fa-paper-plane ml-1" style="margin-left: 8px;"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <img
+              src="images/kswf-logo.png"
+              alt="KSWF Logo"
+              style="height: 60px; margin-bottom: 1rem; filter: brightness(0) invert(1);"
+            />
+            <p style="max-width: 300px; font-size: 0.95rem;">
+              Kaarn Social Welfare Foundation is dedicated to bringing positive change through collective action and community empowerment.
+            </p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          <div>
+            <h4>Quick Links</h4>
+            <div class="footer-links">
+              <a href="index.html">Home</a>
+              <a href="about.html">About Us</a>
+              <a href="programs.html">Projects</a>
+              <a href="blog.html">Impact Stories</a>
+              <a href="collab.html">Collaboration</a>
+              <a href="contact.html">Contact</a>
+            </div>
+          </div>
+          <div>
+            <h4>Newsletter</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 1rem;">
+              Subscribe to receive updates on our latest programs and initiatives.
+            </p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+              <input type="email" placeholder="Email address" required />
+              <button type="submit">Join</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          &copy; 2026 Kaarn Social Welfare Foundation. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/collab.js"></script>
+  </body>
+</html>
