@@ -28,8 +28,8 @@
           <a href="index.html">Home</a>
           <a href="about.html">About</a>
           <a href="programs.html">Projects</a>
+        <a href="collaborate.html">Collaborate</a>
           <a href="blog.html">Blog & Updates</a>
-          <a href="collab.html">Collaboration</a>
           <a href="contact.html" class="active">Contact</a>
         </div>
       </nav>
@@ -58,20 +58,7 @@
             </p>
 
             <ul class="flex-column gap-1-5" style="list-style: none">
-              <li class="flex gap-1" style="align-items: flex-start">
-                <i
-                  class="fas fa-map-marker-alt"
-                  style="color: #e53935; font-size: 1.5rem; margin-top: 5px"
-                ></i>
-                <div>
-                  <h4 class="font-sans" style="margin-bottom: 0.2rem">
-                    Address
-                  </h4>
-                  <p class="font-sans text-muted" style="font-size: 0.95rem">
-                    123 Community Lane, Building 4<br />New Delhi, 110001, India
-                  </p>
-                </div>
-              </li>
+
               <li class="flex gap-1" style="align-items: flex-start">
                 <i
                   class="fas fa-phone-alt"
@@ -166,22 +153,67 @@
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-links">
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="programs.html">Projects</a>
-          <a href="donate.html">Donate</a>
-          <a href="get-involved.html">Get Involved</a>
-          <a href="blog.html">Blog</a>
-          <a href="contact.html">Contact</a>
+      <footer class="footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-col about-col">
+          <a href="index.html" style="display: inline-block;">
+            <img src="images/kswf-logo.png" alt="KSWF Logo" class="footer-logo" />
+          </a>
+          <p class="footer-desc">Kaarn Social Welfare Foundation is dedicated to bringing positive change through collective action, environmental responsibility, and community empowerment.</p>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/kaarnfoundation?igsh=emFzMzZmc29jdjlz" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
         </div>
-        <p class="footer-text">
-          &copy; 2026 Kaarn Social Welfare Foundation. All rights reserved.
-        </p>
+        <div class="footer-col links-col">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+            <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+            <a href="programs.html"><i class="fas fa-chevron-right"></i> Our Projects</a>
+            <a href="get-involved.html"><i class="fas fa-chevron-right"></i> Volunteer</a>
+            <a href="collaborate.html"><i class="fas fa-chevron-right"></i> Collaborate</a>
+            <a href="blog.html"><i class="fas fa-chevron-right"></i> Impact Stories</a>
+            <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-col contact-col">
+          <h4>Contact Info</h4>
+          <ul class="footer-contact-info">
+            <li>
+              <i class="fas fa-phone-alt"></i>
+              <span><a href="tel:+918178227027">8178227027</a></span>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span><a href="mailto:hello@kaarnfoundation.org">hello@kaarnfoundation.org</a></span>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col newsletter-col">
+          <h4>Newsletter</h4>
+          <p>Subscribe to receive updates on our latest programs and community initiatives.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+            <input type="email" placeholder="Your Email Address" required />
+            <button type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
       </div>
-    </footer>
+    </div>
+    <div class="footer-bottom-bar">
+      <div class="container footer-bottom-flex">
+        <p class="copyright">&copy; 2026 Kaarn Social Welfare Foundation. All rights reserved.</p>
+        <div class="legal-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
     <script src="js/main.js"></script>
   </body>
 </html>

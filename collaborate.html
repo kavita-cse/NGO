@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collaborate With Us - Kaarn Social Welfare Foundation</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    .collab-section {
+      padding: 6rem 0;
+    }
+    .collab-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .collab-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .collab-image-wrapper {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-hover);
+    }
+    .collab-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      min-height: 500px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .collab-image-wrapper:hover img {
+      transform: scale(1.05);
+    }
+    .collab-content h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+    .collab-content > p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .benefits-list {
+      list-style: none;
+      margin-bottom: 2.5rem;
+    }
+    .benefits-list li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .benefits-list li i {
+      color: var(--accent-color);
+      background: rgba(255, 152, 0, 0.15);
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 1.2rem;
+    }
+    .collab-form-card {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .collab-form-card h3 {
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav-container glass">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/kswf-logo.png" alt="KSWF Logo" />
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="programs.html">Projects</a>
+        <a href="collaborate.html" class="active">Collaborate</a>
+        <a href="blog.html">Blog &amp; Updates</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="collab-section container">
+      <div class="collab-grid">
+        <!-- Left: Image -->
+        <div class="fade-in-up">
+          <div class="collab-image-wrapper">
+            <img src="images/collab-hero.png" alt="Collaboration and Teamwork for Social Impact" />
+          </div>
+        </div>
+
+        <!-- Right: Content & Form -->
+        <div class="collab-content fade-in-up" style="animation-delay: 0.2s;">
+          <h1>Collaborate With Us</h1>
+          <p>
+            We believe meaningful change happens through strong partnerships. Whether you are an NGO, company, educational institution, community leader, or content creator, we welcome opportunities to work together and create lasting social and environmental impact.
+          </p>
+
+          <ul class="benefits-list">
+            <li>
+              <i class="fas fa-globe-americas"></i>
+              Create Greater Social Impact
+            </li>
+            <li>
+              <i class="fas fa-users"></i>
+              Reach More Communities Together
+            </li>
+            <li>
+              <i class="fas fa-leaf"></i>
+              Build Sustainable Initiatives
+            </li>
+            <li>
+              <i class="fas fa-seedling"></i>
+              Drive Positive Environmental Change
+            </li>
+          </ul>
+
+          <div class="collab-form-card">
+            <h3>Start a Partnership</h3>
+            <form id="collaboration-form" onsubmit="handleCollabSubmit(event)">
+              <div class="form-group mb-1">
+                <input type="text" id="org-name" class="form-control" placeholder="Organization / Individual Name" required />
+              </div>
+              <div class="form-group mb-1">
+                <input type="text" id="contact-name" class="form-control" placeholder="Contact Person Name" required />
+              </div>
+              <div class="form-grid mb-1" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <input type="email" id="collab-email" class="form-control" placeholder="Email Address" required />
+                <input type="tel" id="collab-phone" class="form-control" placeholder="Phone Number" required />
+              </div>
+              <div class="form-group mb-1">
+                <select id="collab-type" class="form-control" required style="font-family: var(--font-sans);">
+                  <option value="" disabled selected>Collaboration Type</option>
+                  <option value="corporate">Corporate CSR</option>
+                  <option value="ngo">NGO Partnership</option>
+                  <option value="edu">Educational Institution</option>
+                  <option value="creator">Content Creator / Media</option>
+                  <option value="community">Community Group</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group mb-1-5">
+                <textarea id="collab-message" class="form-control" rows="4" placeholder="Message / Proposal" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary w-100" style="width: 100%; justify-content: center;">
+                Send Collaboration Request
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-col about-col">
+          <a href="index.html" style="display: inline-block;">
+            <img src="images/kswf-logo.png" alt="KSWF Logo" class="footer-logo" />
+          </a>
+          <p class="footer-desc">Kaarn Social Welfare Foundation is dedicated to bringing positive change through collective action, environmental responsibility, and community empowerment.</p>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/kaarnfoundation?igsh=emFzMzZmc29jdjlz" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-col links-col">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+            <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+            <a href="programs.html"><i class="fas fa-chevron-right"></i> Our Projects</a>
+            <a href="get-involved.html"><i class="fas fa-chevron-right"></i> Volunteer</a>
+            <a href="collaborate.html"><i class="fas fa-chevron-right"></i> Collaborate</a>
+            <a href="blog.html"><i class="fas fa-chevron-right"></i> Impact Stories</a>
+            <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-col contact-col">
+          <h4>Contact Info</h4>
+          <ul class="footer-contact-info">
+            <li>
+              <i class="fas fa-phone-alt"></i>
+              <span><a href="tel:+918178227027">8178227027</a></span>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span><a href="mailto:hello@kaarnfoundation.org">hello@kaarnfoundation.org</a></span>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col newsletter-col">
+          <h4>Newsletter</h4>
+          <p>Subscribe to receive updates on our latest programs and community initiatives.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+            <input type="email" placeholder="Your Email Address" required />
+            <button type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom-bar">
+      <div class="container footer-bottom-flex">
+        <p class="copyright">&copy; 2026 Kaarn Social Welfare Foundation. All rights reserved.</p>
+        <div class="legal-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    function handleCollabSubmit(e) {
+      e.preventDefault();
+      
+      const orgName = document.getElementById('org-name').value;
+      const contactName = document.getElementById('contact-name').value;
+      const email = document.getElementById('collab-email').value;
+      const phone = document.getElementById('collab-phone').value;
+      const type = document.getElementById('collab-type').value;
+      const message = document.getElementById('collab-message').value;
+
+      const newInquiry = {
+        id: 'collab_' + Date.now(),
+        orgName,
+        contactName,
+        email,
+        phone,
+        collabType: type,
+        collabObjective: message,
+        date: new Date().toLocaleDateString()
+      };
+
+      const existing = JSON.parse(localStorage.getItem('kswf_collab_inquiries') || '[]');
+      existing.unshift(newInquiry);
+      localStorage.setItem('kswf_collab_inquiries', JSON.stringify(existing));
+
+      alert('Thank you, ' + contactName + '! Your collaboration request has been submitted successfully. We will get back to you soon.');
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>

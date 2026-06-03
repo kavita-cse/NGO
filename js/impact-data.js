@@ -15,6 +15,25 @@ const fallbackPosts = [
   { id: 'p3', title: 'Women Empowerment Workshop', category: 'Social Awareness', image: 'images/people_circle_1777609298590.png', date: '15 May 2026', location: 'Town Hall', shortDescription: 'Skill building for women entrepreneurs.', fullDescription: 'A 3-day workshop focusing on financial literacy, small business management, and digital marketing skills to empower local women to start and scale their own businesses.', impactText: '50 Women Certified', status: 'Published' }
 ];
 
+const fallbackHeroSlides = [
+  {
+    id: 'slide-fallback-1',
+    title: 'Community Farming & Gardening',
+    description: 'Empowering communities through shared agricultural learning, local participation, and sustainable organic cultivation.',
+    image: 'images/hero_banner_1777609201857.png',
+    order: 1,
+    isFeatured: true
+  },
+  {
+    id: 'slide-fallback-2',
+    title: 'Nurturing Awareness & Civic Responsibility',
+    description: 'Fostering collective action, environmental ownership, and hygiene awareness among children and communities.',
+    image: 'images/people_circle_1777609298590.png',
+    order: 2,
+    isFeatured: true
+  }
+];
+
 const fallbackSpotlight = { 
   id: 's1', 
   title: 'Mega Food Drive', 
@@ -140,6 +159,47 @@ window.ImpactData = {
       if (error) throw error;
     } catch (err) {
       console.error('Error saving spotlight:', err);
+    }
+  },
+
+  getHeroSlides: async () => {
+    try {
+      const { data, error } = await window.supabaseClient
+        .from('ngo_hero_slides')
+        .select('*')
+        .order('order', { ascending: true });
+      if (error) throw error;
+      return (data && data.length > 0) ? data : fallbackHeroSlides;
+    } catch (err) {
+      console.warn('Supabase fetch failed for hero slides, using fallback data.', err);
+      return fallbackHeroSlides;
+    }
+  },
+
+  saveHeroSlides: async (slides) => {
+    try {
+      const { error } = await window.supabaseClient
+        .from('ngo_hero_slides')
+        .upsert(slides, { onConflict: 'id' });
+      if (error) throw error;
+      return { success: true };
+    } catch (err) {
+      console.error('Error saving hero slides:', err);
+      return { success: false, error: err };
+    }
+  },
+
+  deleteHeroSlide: async (id) => {
+    try {
+      const { error } = await window.supabaseClient
+        .from('ngo_hero_slides')
+        .delete()
+        .eq('id', id);
+      if (error) throw error;
+      return { success: true };
+    } catch (err) {
+      console.error('Error deleting hero slide:', err);
+      return { success: false, error: err };
     }
   },
 

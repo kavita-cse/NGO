@@ -114,6 +114,9 @@
         <a href="#" class="nav-item" id="nav-inquiries">
           <i class="fas fa-inbox"></i> Inquiries Portal
         </a>
+        <a href="#" class="nav-item" id="nav-hero-slider">
+          <i class="fas fa-images"></i> Hero Slider
+        </a>
       </nav>
     </aside>
 
@@ -234,6 +237,55 @@
           <!-- Inquiries will be dynamically rendered here via JS -->
         </div>
       </div>
+
+      <!-- Hero Slider Section -->
+      <div id="section-hero-slider" class="card-form" style="display: none; max-width: 1000px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 1rem; margin-bottom: 1.5rem;">
+          <h2 style="font-size: 1.5rem; margin: 0;">Manage Hero Slider</h2>
+          <button class="btn btn-success" id="btn-add-slide" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+            <i class="fas fa-plus mr-1"></i> Add Slide
+          </button>
+        </div>
+        
+        <div id="slides-table-container">
+          <!-- Table will be rendered here via JS -->
+        </div>
+
+        <form id="form-slide" style="display: none; background: #f9f9f9; padding: 1.5rem; border-radius: 8px; margin-top: 2rem;">
+          <h3 id="slide-form-title" style="margin-bottom: 1rem;">Add New Slide</h3>
+          <input type="hidden" id="slide-id" />
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Slide Title</label>
+              <input type="text" id="slide-title" class="form-control" placeholder="e.g., Community Farming" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Display Order</label>
+              <input type="number" id="slide-order" class="form-control" value="0" />
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label">Slide Image (URL or Upload) *</label>
+              <input type="file" id="slide-image-file" class="form-control" accept="image/*" />
+              <input type="text" id="slide-image-url" class="form-control mt-1" placeholder="Or enter image URL" />
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label">Short Description</label>
+              <textarea id="slide-desc" class="form-control" rows="2" placeholder="Brief description to show on the slide..."></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Status (Featured/Trending)</label>
+              <select id="slide-featured" class="form-control">
+                <option value="true">Featured (Visible)</option>
+                <option value="false">Hidden</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+            <button type="submit" class="btn" style="padding: 0.8rem 1.5rem;">Save Slide</button>
+            <button type="button" class="btn btn-outline" id="btn-cancel-slide" style="padding: 0.8rem 1.5rem;">Cancel</button>
+          </div>
+        </form>
+      </div>
     </main>
 
     <!-- Scripts -->
@@ -243,5 +295,6 @@
     <script src="js/admin-ui.js"></script>
     <script src="js/admin-impact.js"></script>
     <script src="js/admin-inquiries.js"></script>
+    <script src="js/admin-hero-slider.js"></script>
   </body>
 </html>

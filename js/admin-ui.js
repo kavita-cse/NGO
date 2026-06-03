@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'nav-highlights': document.getElementById('section-highlights'),
     'nav-spotlight': document.getElementById('section-spotlight'),
     'nav-work-updates': document.getElementById('section-work-updates'),
-    'nav-inquiries': document.getElementById('section-inquiries')
+    'nav-inquiries': document.getElementById('section-inquiries'),
+    'nav-hero-slider': document.getElementById('section-hero-slider')
   };
 
   const navLinks = Object.keys(navItems).map(id => document.getElementById(id)).filter(el => el);
