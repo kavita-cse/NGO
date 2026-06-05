@@ -95,6 +95,81 @@
       color: var(--primary-color);
     }
   </style>
+  <style>
+    main { padding-top: 0 !important; }
+    .collab-cta-banner {
+      background-color: #eaf5ea; /* light green */
+      position: relative;
+      overflow: hidden;
+      padding: 6rem 2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .collab-cta-bg-icon {
+      position: absolute;
+      color: rgba(76, 175, 80, 0.1);
+      z-index: 0;
+    }
+    .collab-cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .collab-cta-content h2 {
+      font-size: 3.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    .collab-cta-content p {
+      font-size: 1.3rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    /* New Professional Split Layout */
+    .collab-split-section {
+      display: flex;
+      min-height: 80vh;
+      align-items: stretch;
+      background: var(--bg-color);
+    }
+    .collab-split-image {
+      flex: 1;
+      background-image: url('images/collab_doodle_v2.png');
+      background-color: white;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: relative;
+      min-height: 500px;
+    }
+    .collab-split-content {
+      flex: 1;
+      padding: 6rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .collab-content-inner {
+      max-width: 600px;
+      width: 100%;
+    }
+    @media (max-width: 900px) {
+      .collab-split-section {
+        flex-direction: column;
+      }
+      .collab-split-content {
+        padding: 4rem 2rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -118,41 +193,53 @@
   </header>
 
   <main>
-    <section class="collab-section container">
-      <div class="collab-grid">
-        <!-- Left: Image -->
-        <div class="fade-in-up">
-          <div class="collab-image-wrapper">
-            <img src="images/collab-hero.png" alt="Collaboration and Teamwork for Social Impact" />
-          </div>
-        </div>
+    <section class="collab-cta-banner">
+      <i class="fas fa-leaf collab-cta-bg-icon" style="top: 10%; left: 10%; font-size: 6rem; transform: rotate(-20deg);"></i>
+      <i class="fas fa-seedling collab-cta-bg-icon" style="bottom: 15%; right: 10%; font-size: 8rem; transform: rotate(15deg);"></i>
+      
+      <div class="collab-cta-content fade-in-up">
+        <h2>Ready to Create Impact?</h2>
+        <p>Partner with us to build stronger,<br>healthier and more sustainable communities.</p>
+      </div>
+    </section>
 
-        <!-- Right: Content & Form -->
-        <div class="collab-content fade-in-up" style="animation-delay: 0.2s;">
-          <h1>Collaborate With Us</h1>
-          <p>
-            We believe meaningful change happens through strong partnerships. Whether you are an NGO, company, educational institution, community leader, or content creator, we welcome opportunities to work together and create lasting social and environmental impact.
-          </p>
+    <section class="container" style="padding: 5rem 2rem; max-width: 900px; margin: 0 auto;">
+      <div class="collab-content fade-in-up">
+        <h1 style="font-size: 4rem; color: var(--primary-color); margin-bottom: 1.5rem; font-weight: 800; letter-spacing: -1px;">Collaborate With Us</h1>
+        <p style="font-size: 1.25rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 3.5rem;">
+          We believe meaningful change happens through strong partnerships. Whether you are an NGO, company, educational institution, community leader, or content creator, we welcome opportunities to work together and create lasting social and environmental impact.
+        </p>
 
-          <ul class="benefits-list">
-            <li>
-              <i class="fas fa-globe-americas"></i>
-              Create Greater Social Impact
-            </li>
-            <li>
-              <i class="fas fa-users"></i>
-              Reach More Communities Together
-            </li>
-            <li>
-              <i class="fas fa-leaf"></i>
-              Build Sustainable Initiatives
-            </li>
-            <li>
-              <i class="fas fa-seedling"></i>
-              Drive Positive Environmental Change
-            </li>
-          </ul>
+        <ul class="benefits-list" style="display: flex; flex-direction: column; gap: 1.8rem; margin-bottom: 0;">
+          <li style="font-size: 1.2rem; font-weight: 600; color: #111;">
+            <i class="fas fa-globe-americas" style="color: #ff9800; background: #fff3e0; width: 55px; height: 55px; font-size: 1.4rem;"></i>
+            Create Greater Social Impact
+          </li>
+          <li style="font-size: 1.2rem; font-weight: 600; color: #111;">
+            <i class="fas fa-users" style="color: #ffb300; background: #fff8e1; width: 55px; height: 55px; font-size: 1.4rem;"></i>
+            Reach More Communities Together
+          </li>
+          <li style="font-size: 1.2rem; font-weight: 600; color: #111;">
+            <i class="fas fa-leaf" style="color: #ffca28; background: #fffde7; width: 55px; height: 55px; font-size: 1.4rem;"></i>
+            Build Sustainable Initiatives
+          </li>
+          <li style="font-size: 1.2rem; font-weight: 600; color: #111;">
+            <i class="fas fa-seedling" style="color: #ffc107; background: #fff8e1; width: 55px; height: 55px; font-size: 1.4rem;"></i>
+            Drive Positive Environmental Change
+          </li>
+        </ul>
+      </div>
+    </section>
 
+    <section class="collab-split-section">
+      <!-- Left: Full Coverage Image -->
+      <div class="collab-split-image fade-in-up">
+        <!-- The background image covers all useless spacing -->
+      </div>
+
+      <!-- Right: Content & Form -->
+      <div class="collab-split-content fade-in-up" style="animation-delay: 0.2s; padding-top: 4rem; padding-bottom: 4rem;">
+        <div class="collab-content-inner">
           <div class="collab-form-card">
             <h3>Start a Partnership</h3>
             <form id="collaboration-form" onsubmit="handleCollabSubmit(event)">
