@@ -16,6 +16,20 @@ document.addEventListener('DOMContentLoaded', () => {
     slidesData = slidesData.filter(s => s.isFeatured === true || s.isFeatured === 'true');
     if (slidesData.length === 0) return;
 
+    const nextBtn = document.getElementById('slider-next');
+    const prevBtn = document.getElementById('slider-prev');
+    
+    // Hide controls if there's only 1 slide
+    if (slidesData.length <= 1) {
+      if (nextBtn) nextBtn.style.display = 'none';
+      if (prevBtn) prevBtn.style.display = 'none';
+      if (dotsContainer) dotsContainer.style.display = 'none';
+    } else {
+      if (nextBtn) nextBtn.style.display = 'flex';
+      if (prevBtn) prevBtn.style.display = 'flex';
+      if (dotsContainer) dotsContainer.style.display = 'flex';
+    }
+
     wrapper.innerHTML = '';
     dotsContainer.innerHTML = '';
 
@@ -49,7 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
       dotElements.push(dot);
     });
 
-    startAutoPlay();
+    if (slidesData.length > 1) {
+      startAutoPlay();
+    }
   };
 
   const goToSlide = (index) => {
