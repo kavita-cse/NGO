@@ -46,11 +46,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             <span class="badge badge-featured">Featured Program</span>
             <h3 style="font-size: 2.5rem; margin-bottom: 1rem;">${spotlight.title}</h3>
             <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 0;">${spotlight.shortDescription || ''}</p>
-            <div class="spotlight-stats">
-              ${spotlight.impactStat1 ? `<div class="stat-item"><i class="fas fa-users"></i> ${spotlight.impactStat1}</div>` : ''}
-              ${spotlight.impactStat2 ? `<div class="stat-item"><i class="fas fa-map-marker-alt"></i> ${spotlight.impactStat2}</div>` : ''}
-              ${spotlight.impactStat3 ? `<div class="stat-item"><i class="fas fa-globe"></i> ${spotlight.impactStat3}</div>` : ''}
-            </div>
 
           </div>
         </div>
@@ -71,11 +66,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <span class="badge badge-featured">Featured Program</span>
                 <h3 style="font-size: 2.5rem; margin-bottom: 1rem;">${spotlight.title}</h3>
                 <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 0;">${spotlight.shortDescription || ''}</p>
-                <div class="spotlight-stats">
-                  ${spotlight.impactStat1 ? `<div class="stat-item"><i class="fas fa-users"></i> ${spotlight.impactStat1}</div>` : ''}
-                  ${spotlight.impactStat2 ? `<div class="stat-item"><i class="fas fa-map-marker-alt"></i> ${spotlight.impactStat2}</div>` : ''}
-                  ${spotlight.impactStat3 ? `<div class="stat-item"><i class="fas fa-globe"></i> ${spotlight.impactStat3}</div>` : ''}
-                </div>
 
               </div>
             </div>

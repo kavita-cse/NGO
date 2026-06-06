@@ -143,7 +143,16 @@
           <input type="hidden" id="hl-id" />
           <div class="form-grid">
             <div class="form-group"><label class="form-label">Title *</label><input type="text" id="hl-title" class="form-control" required /></div>
-            <div class="form-group"><label class="form-label">Category</label><input type="text" id="hl-category" class="form-control" /></div>
+            <div class="form-group"><label class="form-label">Category</label>
+              <select id="hl-category" class="form-control">
+                <option value="">-- Select Category --</option>
+                <option value="Awareness">Awareness</option>
+                <option value="Environment">Environment</option>
+                <option value="Education">Education</option>
+                <option value="Health">Health</option>
+                <option value="Community Support">Community Support</option>
+              </select>
+            </div>
             <div class="form-group"><label class="form-label">Date</label><input type="text" id="hl-date" class="form-control" placeholder="e.g. 14 May 2026" /></div>
             <div class="form-group"><label class="form-label">Location</label><input type="text" id="hl-location" class="form-control" /></div>
             <div class="form-group full-width"><label class="form-label">Cover Image (URL or Upload)</label>
@@ -171,7 +180,7 @@
             <i class="fas fa-plus mr-1"></i> Add Featured Program
           </button>
         </div>
-        <p class="text-muted mb-2 font-sans" style="font-size: 0.95rem;">You can add and manage featured programs here. To set a regular post as a featured program, go to "Manage Post" and click "Make Featured".</p>
+        <p class="text-muted mb-2 font-sans" style="font-size: 0.95rem;">Add and manage featured programs here. Featured Programs are displayed prominently on the blog page.</p>
         
         <div id="spotlight-table-container">
           <!-- Table will be rendered here via JS -->
@@ -191,9 +200,6 @@
             </div>
             <div class="form-group full-width"><label class="form-label">Short Description *</label><textarea id="sl-short-desc" class="form-control" rows="2" required></textarea></div>
             <div class="form-group full-width"><label class="form-label">Full Description</label><textarea id="sl-full-desc" class="form-control" rows="4"></textarea></div>
-            <div class="form-group"><label class="form-label">Impact Stat 1</label><input type="text" id="sl-stat1" class="form-control" placeholder="e.g. 200+ Volunteers" /></div>
-            <div class="form-group"><label class="form-label">Impact Stat 2</label><input type="text" id="sl-stat2" class="form-control" placeholder="e.g. 5 Areas Covered" /></div>
-            <div class="form-group"><label class="form-label">Impact Stat 3</label><input type="text" id="sl-stat3" class="form-control" placeholder="e.g. 500+ Reached" /></div>
             <div class="form-group"><label class="form-label">Status</label>
               <select id="sl-status" class="form-control">
                 <option value="Active">Active</option>

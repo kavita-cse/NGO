@@ -151,14 +151,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let html = '<table style="width: 100%; border-collapse: collapse; text-align: left; margin-bottom: 2rem;">';
-    html += '<thead><tr style="border-bottom: 2px solid #eee;"><th>Image</th><th>Title</th><th>Status</th><th>Featured</th><th>Actions</th></tr></thead><tbody>';
+    html += '<thead><tr style="border-bottom: 2px solid #eee;"><th>Image</th><th>Title</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
     
     posts.forEach(p => {
       html += `<tr style="border-bottom: 1px solid #eee;">
         <td style="padding: 10px 0;"><img src="${p.image || 'images/placeholder.jpg'}" style="width: 80px; height: 50px; border-radius: 4px; object-fit: cover;"></td>
         <td style="padding: 10px 0;"><strong>${p.title}</strong><br><small class="text-muted">${p.category || ''}</small></td>
         <td style="padding: 10px 0;"><span class="badge" style="background: ${p.status === 'Published' ? '#e8f5e9' : '#ffebee'}; color: ${p.status === 'Published' ? '#2e7d32' : '#c62828'};">${p.status}</span></td>
-        <td style="padding: 10px 0;">${p.isSpotlight ? '<span class="badge badge-featured">Active</span>' : `<button class="btn btn-make-spotlight" data-id="${p.id}" style="background:#fff; color:var(--button-bg); border: 1px solid var(--button-bg); padding: 0.2rem 0.5rem; font-size: 0.75rem;">Make Featured</button>`}</td>
+
         <td style="padding: 10px 0;">
           <button class="btn btn-edit-pt" data-id="${p.id}" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; margin-right: 5px;">Edit</button>
           <button class="btn btn-del-pt" data-id="${p.id}" style="background: #e53935; padding: 0.3rem 0.6rem; font-size: 0.8rem;">Delete</button>
@@ -172,7 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Bind Actions
     document.querySelectorAll('.btn-edit-pt').forEach(btn => btn.addEventListener('click', (e) => editPost(e.target.getAttribute('data-id'))));
     document.querySelectorAll('.btn-del-pt').forEach(btn => btn.addEventListener('click', (e) => deletePost(e.target.getAttribute('data-id'))));
-    document.querySelectorAll('.btn-make-spotlight').forEach(btn => btn.addEventListener('click', (e) => makeSpotlight(e.target.getAttribute('data-id'))));
   };
 
   const editPost = async (id) => {
@@ -202,43 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  const makeSpotlight = async (id) => {
-    if (confirm('Make this post the new Featured Program?')) {
-      const posts = await ImpactData.getPosts();
-      const p = posts.find(x => x.id === id);
-      if (!p) return;
-
-      // Update spotlight flags in posts
-      const updatedPosts = posts.map(post => ({ ...post, isSpotlight: (post.id === id) }));
-      await ImpactData.savePosts(updatedPosts);
-
-      // Create new spotlight entry
-      const spotlight = {
-        id: 'spotlight-' + Date.now(),
-        title: p.title,
-        category: p.category,
-        image: p.image,
-        shortDescription: p.shortDescription,
-        fullDescription: p.fullDescription,
-        date: p.date,
-        location: p.location,
-        impactStat1: p.impactText || '',
-        impactStat2: '',
-        impactStat3: '',
-        buttonText: 'View Program',
-        buttonLink: '#',
-        status: 'Active',
-        isSpotlight: true,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      };
-      await ImpactData.saveSpotlight(spotlight);
-      
-      renderPostsTable();
-      renderSpotlightsTable();
-      alert('Featured program updated successfully!');
-    }
-  };
 
   document.getElementById('btn-add-post').addEventListener('click', () => {
     clearForm('form-post');
@@ -279,12 +241,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const existing = posts.find(x => x.id === id);
       if (existing) {
         if (existing.image) post.image = existing.image;
-        if (existing.isSpotlight !== undefined) post.isSpotlight = existing.isSpotlight;
       }
     }
     if (!id) {
       post.createdAt = new Date().toISOString();
-      post.isSpotlight = false;
     }
 
 
@@ -345,9 +305,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('sl-location').value = sl.location || '';
     document.getElementById('sl-short-desc').value = sl.shortDescription || '';
     document.getElementById('sl-full-desc').value = sl.fullDescription || '';
-    document.getElementById('sl-stat1').value = sl.impactStat1 || '';
-    document.getElementById('sl-stat2').value = sl.impactStat2 || '';
-    document.getElementById('sl-stat3').value = sl.impactStat3 || '';
 
     document.getElementById('sl-status').value = sl.status || 'Active';
     document.getElementById('sl-image-url').value = sl.image && sl.image.startsWith('http') ? sl.image : '';
@@ -390,9 +347,6 @@ document.addEventListener('DOMContentLoaded', () => {
       location: document.getElementById('sl-location').value,
       shortDescription: document.getElementById('sl-short-desc').value,
       fullDescription: document.getElementById('sl-full-desc').value,
-      impactStat1: document.getElementById('sl-stat1').value,
-      impactStat2: document.getElementById('sl-stat2').value,
-      impactStat3: document.getElementById('sl-stat3').value,
 
       status: document.getElementById('sl-status').value,
       isSpotlight: true,
