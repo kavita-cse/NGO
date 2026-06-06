@@ -16,7 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const clearForm = (formId) => {
     document.getElementById(formId).reset();
-    const idInput = document.getElementById(formId.replace('form-', '') === 'highlight' ? 'hl-id' : 'pt-id');
+    let idInput;
+    if (formId === 'form-highlight') idInput = document.getElementById('hl-id');
+    else if (formId === 'form-post') idInput = document.getElementById('pt-id');
+    else if (formId === 'form-spotlight') idInput = document.getElementById('sl-id');
     if (idInput) idInput.value = '';
   };
 
@@ -148,14 +151,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let html = '<table style="width: 100%; border-collapse: collapse; text-align: left; margin-bottom: 2rem;">';
-    html += '<thead><tr style="border-bottom: 2px solid #eee;"><th>Image</th><th>Title</th><th>Status</th><th>Spotlight</th><th>Actions</th></tr></thead><tbody>';
+    html += '<thead><tr style="border-bottom: 2px solid #eee;"><th>Image</th><th>Title</th><th>Status</th><th>Featured</th><th>Actions</th></tr></thead><tbody>';
     
     posts.forEach(p => {
       html += `<tr style="border-bottom: 1px solid #eee;">
         <td style="padding: 10px 0;"><img src="${p.image || 'images/placeholder.jpg'}" style="width: 80px; height: 50px; border-radius: 4px; object-fit: cover;"></td>
         <td style="padding: 10px 0;"><strong>${p.title}</strong><br><small class="text-muted">${p.category || ''}</small></td>
         <td style="padding: 10px 0;"><span class="badge" style="background: ${p.status === 'Published' ? '#e8f5e9' : '#ffebee'}; color: ${p.status === 'Published' ? '#2e7d32' : '#c62828'};">${p.status}</span></td>
-        <td style="padding: 10px 0;">${p.isSpotlight ? '<span class="badge badge-featured">Active</span>' : `<button class="btn btn-make-spotlight" data-id="${p.id}" style="background:#fff; color:var(--button-bg); border: 1px solid var(--button-bg); padding: 0.2rem 0.5rem; font-size: 0.75rem;">Make Spotlight</button>`}</td>
+        <td style="padding: 10px 0;">${p.isSpotlight ? '<span class="badge badge-featured">Active</span>' : `<button class="btn btn-make-spotlight" data-id="${p.id}" style="background:#fff; color:var(--button-bg); border: 1px solid var(--button-bg); padding: 0.2rem 0.5rem; font-size: 0.75rem;">Make Featured</button>`}</td>
         <td style="padding: 10px 0;">
           <button class="btn btn-edit-pt" data-id="${p.id}" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; margin-right: 5px;">Edit</button>
           <button class="btn btn-del-pt" data-id="${p.id}" style="background: #e53935; padding: 0.3rem 0.6rem; font-size: 0.8rem;">Delete</button>
@@ -200,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const makeSpotlight = async (id) => {
-    if (confirm('Make this post the new Program Spotlight?')) {
+    if (confirm('Make this post the new Featured Program?')) {
       const posts = await ImpactData.getPosts();
       const p = posts.find(x => x.id === id);
       if (!p) return;
@@ -232,8 +235,8 @@ document.addEventListener('DOMContentLoaded', () => {
       await ImpactData.saveSpotlight(spotlight);
       
       renderPostsTable();
-      renderSpotlightForm();
-      alert('Spotlight updated successfully!');
+      renderSpotlightsTable();
+      alert('Featured program updated successfully!');
     }
   };
 
@@ -296,22 +299,80 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // SPOTLIGHT MANAGEMENT
+  // FEATURED PROGRAM (SPOTLIGHT) MANAGEMENT
   // ==========================================
-  const renderSpotlightForm = async () => {
-    const sl = await ImpactData.getSpotlight();
+  const renderSpotlightsTable = async () => {
+    const spotlights = await ImpactData.getSpotlights();
+    const container = document.getElementById('spotlight-table-container');
+    
+    if (spotlights.length === 0) {
+      container.innerHTML = '<p class="text-muted">No featured programs found.</p>';
+      return;
+    }
+
+    let html = '<table style="width: 100%; border-collapse: collapse; text-align: left; margin-bottom: 2rem;">';
+    html += '<thead><tr style="border-bottom: 2px solid #eee;"><th>Image</th><th>Title</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
+    
+    spotlights.forEach(s => {
+      html += `<tr style="border-bottom: 1px solid #eee;">
+        <td style="padding: 10px 0;"><img src="${s.image || 'images/placeholder.jpg'}" style="width: 80px; height: 50px; border-radius: 4px; object-fit: cover;"></td>
+        <td style="padding: 10px 0;"><strong>${s.title}</strong><br><small class="text-muted">${s.category || ''}</small></td>
+        <td style="padding: 10px 0;"><span class="badge" style="background: ${s.status === 'Active' ? '#e8f5e9' : '#ffebee'}; color: ${s.status === 'Active' ? '#2e7d32' : '#c62828'};">${s.status}</span></td>
+        <td style="padding: 10px 0;">
+          <button class="btn btn-edit-sl" data-id="${s.id}" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; margin-right: 5px;">Edit</button>
+          <button class="btn btn-del-sl" data-id="${s.id}" style="background: #e53935; padding: 0.3rem 0.6rem; font-size: 0.8rem;">Delete</button>
+        </td>
+      </tr>`;
+    });
+    
+    html += '</tbody></table>';
+    container.innerHTML = html;
+
+    // Bind Edit/Delete
+    document.querySelectorAll('.btn-edit-sl').forEach(btn => btn.addEventListener('click', (e) => editSpotlight(e.target.getAttribute('data-id'))));
+    document.querySelectorAll('.btn-del-sl').forEach(btn => btn.addEventListener('click', (e) => deleteSpotlight(e.target.getAttribute('data-id'))));
+  };
+
+  const editSpotlight = async (id) => {
+    const spotlights = await ImpactData.getSpotlights();
+    const sl = spotlights.find(x => x.id === id);
     if (!sl) return;
 
     document.getElementById('sl-id').value = sl.id || '';
     document.getElementById('sl-title').value = sl.title || '';
+    document.getElementById('sl-category').value = sl.category || '';
+    document.getElementById('sl-date').value = sl.date || '';
+    document.getElementById('sl-location').value = sl.location || '';
     document.getElementById('sl-short-desc').value = sl.shortDescription || '';
+    document.getElementById('sl-full-desc').value = sl.fullDescription || '';
     document.getElementById('sl-stat1').value = sl.impactStat1 || '';
     document.getElementById('sl-stat2').value = sl.impactStat2 || '';
     document.getElementById('sl-stat3').value = sl.impactStat3 || '';
     document.getElementById('sl-btn-text').value = sl.buttonText || 'View Program';
     document.getElementById('sl-btn-link').value = sl.buttonLink || '#';
+    document.getElementById('sl-status').value = sl.status || 'Active';
     document.getElementById('sl-image-url').value = sl.image && sl.image.startsWith('http') ? sl.image : '';
+    
+    document.getElementById('spotlight-form-title').textContent = 'Edit Featured Program';
+    document.getElementById('form-spotlight').style.display = 'block';
   };
+
+  const deleteSpotlight = async (id) => {
+    if (confirm('Are you sure you want to delete this featured program?')) {
+      await ImpactData.deleteSpotlight(id);
+      renderSpotlightsTable();
+    }
+  };
+
+  document.getElementById('btn-add-spotlight').addEventListener('click', () => {
+    clearForm('form-spotlight');
+    document.getElementById('spotlight-form-title').textContent = 'Add New Featured Program';
+    document.getElementById('form-spotlight').style.display = 'block';
+  });
+
+  document.getElementById('btn-cancel-spotlight').addEventListener('click', () => {
+    document.getElementById('form-spotlight').style.display = 'none';
+  });
 
   document.getElementById('form-spotlight').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -319,31 +380,51 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.textContent = 'Saving...';
     btn.disabled = true;
 
-    const sl = await ImpactData.getSpotlight() || {};
+    const id = document.getElementById('sl-id').value;
     const imgStr = await handleImageInput(document.getElementById('sl-image-file'), document.getElementById('sl-image-url'));
     
-    sl.id = sl.id || ImpactData.generateId();
-    sl.title = document.getElementById('sl-title').value;
-    sl.shortDescription = document.getElementById('sl-short-desc').value;
-    sl.impactStat1 = document.getElementById('sl-stat1').value;
-    sl.impactStat2 = document.getElementById('sl-stat2').value;
-    sl.impactStat3 = document.getElementById('sl-stat3').value;
-    sl.buttonText = document.getElementById('sl-btn-text').value;
-    sl.buttonLink = document.getElementById('sl-btn-link').value;
-    sl.isSpotlight = true;
-    sl.updatedAt = new Date().toISOString();
+    const spotlight = {
+      id: id || ImpactData.generateId(),
+      title: document.getElementById('sl-title').value,
+      category: document.getElementById('sl-category').value,
+      date: document.getElementById('sl-date').value,
+      location: document.getElementById('sl-location').value,
+      shortDescription: document.getElementById('sl-short-desc').value,
+      fullDescription: document.getElementById('sl-full-desc').value,
+      impactStat1: document.getElementById('sl-stat1').value,
+      impactStat2: document.getElementById('sl-stat2').value,
+      impactStat3: document.getElementById('sl-stat3').value,
+      buttonText: document.getElementById('sl-btn-text').value,
+      buttonLink: document.getElementById('sl-btn-link').value,
+      status: document.getElementById('sl-status').value,
+      isSpotlight: true,
+      updatedAt: new Date().toISOString()
+    };
     
-    if (imgStr) sl.image = imgStr;
+    if (imgStr) {
+      spotlight.image = imgStr;
+    } else if (id) {
+      const spotlights = await ImpactData.getSpotlights();
+      const existing = spotlights.find(x => x.id === id);
+      if (existing) {
+        if (existing.image) spotlight.image = existing.image;
+      }
+    }
+    if (!id) {
+      spotlight.createdAt = new Date().toISOString();
+    }
 
-    await ImpactData.saveSpotlight(sl);
+    await ImpactData.saveSpotlight(spotlight);
     
-    btn.textContent = 'Save Spotlight';
+    btn.textContent = 'Save Featured Program';
     btn.disabled = false;
-    alert('Spotlight details saved successfully!');
+    document.getElementById('form-spotlight').style.display = 'none';
+    renderSpotlightsTable();
+    alert('Featured program details saved successfully!');
   });
 
   // --- INIT RENDERING ---
   renderHighlightsTable();
   renderPostsTable();
-  renderSpotlightForm();
+  renderSpotlightsTable();
 });
