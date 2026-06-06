@@ -145,20 +145,41 @@ window.ImpactData = {
       return fallbackSpotlight;
     }
   },
+
+  getSpotlights: async () => {
+    try {
+      const { data, error } = await window.supabaseClient
+        .from('ngo_spotlight')
+        .select('*')
+        .order('createdAt', { ascending: false });
+      if (error) throw error;
+      return (data && data.length > 0) ? data : [fallbackSpotlight];
+    } catch (err) {
+      console.warn('Supabase fetch failed for spotlights, using fallback data.', err);
+      return [fallbackSpotlight];
+    }
+  },
   
   saveSpotlight: async (spotlight) => {
     try {
-      await window.supabaseClient
-        .from('ngo_spotlight')
-        .update({ isSpotlight: false })
-        .neq('id', spotlight.id);
-
       const { error } = await window.supabaseClient
         .from('ngo_spotlight')
         .upsert([spotlight]);
       if (error) throw error;
     } catch (err) {
       console.error('Error saving spotlight:', err);
+    }
+  },
+
+  deleteSpotlight: async (id) => {
+    try {
+      const { error } = await window.supabaseClient
+        .from('ngo_spotlight')
+        .delete()
+        .eq('id', id);
+      if (error) throw error;
+    } catch (err) {
+      console.error('Error deleting spotlight:', err);
     }
   },
 

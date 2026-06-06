@@ -1874,3 +1874,65 @@ textarea.form-control {
     justify-content: center;
   }
 }
+
+/* ==========================================================================
+   Featured Program Slider Styles
+   ========================================================================== */
+.featured-slider {
+  position: relative;
+  width: 100%;
+}
+.featured-slide {
+  display: none;
+  width: 100%;
+}
+.featured-slide.active {
+  display: flex !important;
+  animation: featuredFadeIn 0.5s ease-in-out;
+}
+@keyframes featuredFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.featured-slider .slider-control {
+  background: rgba(0, 0, 0, 0.4);
+  width: 44px;
+  height: 44px;
+}
+.featured-slider .slider-control:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+.featured-slider .slider-control.prev {
+  left: -22px;
+}
+.featured-slider .slider-control.next {
+  right: -22px;
+}
+.featured-slider .slider-dots {
+  position: relative;
+  bottom: auto;
+  right: auto;
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 10;
+}
+.featured-slider .dot {
+  background: rgba(0, 0, 0, 0.2);
+  width: 10px;
+  height: 10px;
+}
+.featured-slider .dot.active {
+  background: var(--primary-color);
+}
+
+@media (max-width: 992px) {
+  .featured-slider .slider-control.prev {
+    left: 10px;
+  }
+  .featured-slider .slider-control.next {
+    right: 10px;
+  }
+}
+

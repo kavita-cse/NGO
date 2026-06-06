@@ -2,12 +2,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Fetch data from database using ImpactData layer
   const allHighlights = await ImpactData.getHighlights();
   const allPosts = await ImpactData.getPosts();
-  const rawSpotlight = await ImpactData.getSpotlight();
+  const rawSpotlights = await ImpactData.getSpotlights();
 
   // Filter only 'Published'/'Active' items for public view
   const highlights = allHighlights.filter(h => h.status === 'Published');
   const posts = allPosts.filter(p => p.status === 'Published' && !p.isSpotlight);
-  const spotlight = rawSpotlight && rawSpotlight.status === 'Active' ? rawSpotlight : null;
+  const spotlights = rawSpotlights.filter(s => s.status === 'Active');
 
   // --- RENDER HIGHLIGHTS ---
   const highlightsContainer = document.getElementById('dynamic-highlights-container');
@@ -33,9 +33,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   // --- RENDER SPOTLIGHT ---
   const spotlightContainer = document.getElementById('dynamic-spotlight-container');
   if (spotlightContainer) {
-    if (!spotlight) {
-      spotlightContainer.innerHTML = '<p class="text-center w-full" style="color: var(--text-muted);">No active program spotlight right now.</p>';
-    } else {
+    if (spotlights.length === 0) {
+      spotlightContainer.innerHTML = '<p class="text-center w-full" style="color: var(--text-muted);">No active featured program right now.</p>';
+    } else if (spotlights.length === 1) {
+      const spotlight = spotlights[0];
       spotlightContainer.innerHTML = `
         <div class="spotlight-card glass">
           <div class="spotlight-img">
@@ -54,6 +55,93 @@ document.addEventListener('DOMContentLoaded', async () => {
           </div>
         </div>
       `;
+    } else {
+      // Build slider HTML
+      let html = '<div class="featured-slider" id="featured-slider">';
+      html += '<div class="featured-slider-wrapper">';
+      
+      spotlights.forEach((spotlight, index) => {
+        html += `
+          <div class="featured-slide ${index === 0 ? 'active' : ''}">
+            <div class="spotlight-card glass">
+              <div class="spotlight-img">
+                <img src="${spotlight.image || 'images/placeholder.jpg'}" alt="${spotlight.title}">
+              </div>
+              <div class="spotlight-content">
+                <span class="badge badge-featured">Featured Program</span>
+                <h3 style="font-size: 2.5rem; margin-bottom: 1rem;">${spotlight.title}</h3>
+                <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 0;">${spotlight.shortDescription || ''}</p>
+                <div class="spotlight-stats">
+                  ${spotlight.impactStat1 ? `<div class="stat-item"><i class="fas fa-users"></i> ${spotlight.impactStat1}</div>` : ''}
+                  ${spotlight.impactStat2 ? `<div class="stat-item"><i class="fas fa-map-marker-alt"></i> ${spotlight.impactStat2}</div>` : ''}
+                  ${spotlight.impactStat3 ? `<div class="stat-item"><i class="fas fa-globe"></i> ${spotlight.impactStat3}</div>` : ''}
+                </div>
+                <a href="${spotlight.buttonLink || '#'}" class="btn" style="width: max-content;">${spotlight.buttonText || 'View Program'} <i class="fas fa-arrow-right ml-1" style="margin-left: 8px;"></i></a>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      
+      html += '</div>'; // End wrapper
+      // Controls
+      html += '<button class="slider-control prev" id="featured-prev" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>';
+      html += '<button class="slider-control next" id="featured-next" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>';
+      // Dots
+      html += '<div class="slider-dots" id="featured-dots"></div>';
+      html += '</div>'; // End slider container
+      
+      spotlightContainer.innerHTML = html;
+
+      // Initialize Slider Scripting
+      const slides = spotlightContainer.querySelectorAll('.featured-slide');
+      const dotsContainer = spotlightContainer.querySelector('#featured-dots');
+      const prevBtn = spotlightContainer.querySelector('#featured-prev');
+      const nextBtn = spotlightContainer.querySelector('#featured-next');
+      
+      let currentSlide = 0;
+      let dotElements = [];
+      let autoPlayInterval;
+
+      // Render dots
+      slides.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.className = `dot ${index === 0 ? 'active' : ''}`;
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+        dotElements.push(dot);
+      });
+
+      const goToSlide = (index) => {
+        slides[currentSlide].classList.remove('active');
+        dotElements[currentSlide].classList.remove('active');
+        
+        currentSlide = index;
+        if (currentSlide >= slides.length) currentSlide = 0;
+        if (currentSlide < 0) currentSlide = slides.length - 1;
+        
+        slides[currentSlide].classList.add('active');
+        dotElements[currentSlide].classList.add('active');
+        
+        resetAutoPlay();
+      };
+
+      const nextSlide = () => goToSlide(currentSlide + 1);
+      const prevSlide = () => goToSlide(currentSlide - 1);
+
+      const startAutoPlay = () => {
+        autoPlayInterval = setInterval(nextSlide, 5000);
+      };
+
+      const resetAutoPlay = () => {
+        clearInterval(autoPlayInterval);
+        startAutoPlay();
+      };
+
+      prevBtn?.addEventListener('click', prevSlide);
+      nextBtn?.addEventListener('click', nextSlide);
+
+      startAutoPlay();
     }
   }
 
