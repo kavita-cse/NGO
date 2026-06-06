@@ -95,6 +95,264 @@
         color: #c62828;
         display: block;
       }
+
+      /* =====================================================
+         ADMIN DASHBOARD — MOBILE RESPONSIVE (Android/iPhone)
+         Only affects screens ≤ 767px. Desktop unchanged.
+         ===================================================== */
+      @media (max-width: 767px) {
+
+        /* Body: switch from side-by-side to stacked */
+        body {
+          flex-direction: column;
+          overflow-x: hidden;
+        }
+
+        /* --- Sidebar: horizontal scrollable top bar --- */
+        .sidebar {
+          width: 100%;
+          min-width: unset;
+          padding: 0.75rem 1rem;
+          border-right: none;
+          border-bottom: 1px solid #eee;
+          flex-direction: row;
+          align-items: center;
+          gap: 0;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          position: sticky;
+          top: 0;
+          z-index: 100;
+          background: white;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .sidebar::-webkit-scrollbar { display: none; }
+
+        /* Logo in sidebar — smaller, left-anchored */
+        .sidebar img {
+          max-width: 44px;
+          min-width: 44px;
+          height: 44px;
+          object-fit: contain;
+          margin-bottom: 0;
+          margin-right: 0.75rem;
+          border-radius: 50%;
+          flex-shrink: 0;
+        }
+
+        /* Nav inside sidebar — horizontal row */
+        .sidebar nav {
+          display: flex;
+          flex-direction: row;
+          gap: 0.25rem;
+          flex-shrink: 0;
+        }
+
+        /* Each nav item — compact pill */
+        .nav-item {
+          padding: 0.5rem 0.85rem;
+          margin-bottom: 0;
+          border-radius: 20px;
+          font-size: 0.78rem;
+          white-space: nowrap;
+          flex-shrink: 0;
+          gap: 6px;
+        }
+
+        .nav-item i {
+          font-size: 0.85rem;
+        }
+
+        /* --- Main content area --- */
+        .main-content {
+          padding: 1.25rem 1rem;
+          width: 100%;
+          box-sizing: border-box;
+          overflow-x: hidden;
+        }
+
+        /* Dashboard header */
+        .dashboard-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.25rem;
+          margin-bottom: 1.25rem;
+        }
+
+        .dashboard-header h1 {
+          font-size: 1.5rem !important;
+        }
+
+        .dashboard-header p {
+          font-size: 0.85rem;
+        }
+
+        /* --- Card / Section wrapper --- */
+        .card-form {
+          padding: 1rem !important;
+          border-radius: 10px;
+          max-width: 100% !important;
+          width: 100%;
+          box-sizing: border-box;
+        }
+
+        /* Section header row (title + action button) */
+        .card-form > div[style*="justify-content: space-between"] {
+          flex-direction: column !important;
+          align-items: flex-start !important;
+          gap: 0.75rem;
+        }
+
+        .card-form > div[style*="justify-content: space-between"] h2 {
+          font-size: 1.2rem !important;
+        }
+
+        /* Inquiries tab buttons row */
+        .card-form .flex.gap-1 {
+          flex-wrap: wrap;
+          gap: 0.5rem !important;
+          margin-left: 0 !important;
+        }
+
+        .card-form .flex.gap-1 button {
+          font-size: 0.78rem !important;
+          padding: 0.4rem 0.8rem !important;
+        }
+
+        /* --- Form grid: single column on mobile --- */
+        .form-grid {
+          grid-template-columns: 1fr !important;
+          gap: 1rem;
+        }
+
+        .form-group.full-width {
+          grid-column: 1 !important;
+        }
+
+        /* Form section background cards */
+        #form-highlight,
+        #form-spotlight,
+        #form-post,
+        #form-slide {
+          padding: 1rem !important;
+          margin-top: 1.25rem !important;
+        }
+
+        /* Form action buttons row */
+        .card-form div[style*="display: flex; gap: 1rem"] {
+          flex-direction: column !important;
+          gap: 0.75rem !important;
+        }
+
+        .card-form div[style*="display: flex; gap: 1rem"] button {
+          width: 100% !important;
+          text-align: center;
+          justify-content: center;
+        }
+
+        /* Add/Save buttons */
+        .card-form > div button.btn,
+        .card-form > div a.btn {
+          font-size: 0.82rem;
+          padding: 0.5rem 1rem;
+        }
+
+        /* --- Tables: make them scroll horizontally --- */
+        #highlights-table-container,
+        #spotlight-table-container,
+        #posts-table-container,
+        #inquiries-table-container,
+        #slides-table-container {
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          width: 100%;
+        }
+
+        /* Ensure tables themselves don't stretch the page */
+        #highlights-table-container table,
+        #spotlight-table-container table,
+        #posts-table-container table,
+        #inquiries-table-container table,
+        #slides-table-container table {
+          min-width: 520px;
+          font-size: 0.82rem;
+        }
+
+        /* Table cells padding reduction */
+        #highlights-table-container td,
+        #highlights-table-container th,
+        #spotlight-table-container td,
+        #spotlight-table-container th,
+        #posts-table-container td,
+        #posts-table-container th,
+        #inquiries-table-container td,
+        #inquiries-table-container th,
+        #slides-table-container td,
+        #slides-table-container th {
+          padding: 10px 8px !important;
+          font-size: 0.8rem;
+        }
+
+        /* Form controls */
+        .form-control {
+          font-size: 0.92rem;
+          padding: 0.7rem 0.9rem;
+        }
+
+        .form-label {
+          font-size: 0.85rem;
+        }
+
+        /* Status message */
+        #status-message {
+          font-size: 0.88rem;
+          padding: 0.75rem;
+        }
+
+        /* Prevent text overflow everywhere */
+        * {
+          max-width: 100%;
+          word-break: break-word;
+          overflow-wrap: break-word;
+        }
+
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+      }
+
+      /* Tablet (768px–1023px) */
+      @media (min-width: 768px) and (max-width: 1023px) {
+        .sidebar {
+          width: 200px;
+          padding: 1.5rem 1rem;
+        }
+
+        .sidebar img {
+          max-width: 90px;
+          margin-bottom: 2rem;
+        }
+
+        .nav-item {
+          padding: 0.75rem;
+          font-size: 0.88rem;
+        }
+
+        .main-content {
+          padding: 2rem 1.5rem;
+        }
+
+        .card-form {
+          max-width: 100% !important;
+        }
+
+        .form-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
     </style>
   </head>
   <body>

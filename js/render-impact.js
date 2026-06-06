@@ -43,10 +43,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             <img src="${spotlight.image || 'images/placeholder.jpg'}" alt="${spotlight.title}">
           </div>
           <div class="spotlight-content">
-            <span class="badge badge-featured">Featured Program</span>
+            <span class="badge badge-featured">Upcoming Program</span>
             <h3 style="font-size: 2.5rem; margin-bottom: 1rem;">${spotlight.title}</h3>
             <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 0;">${spotlight.shortDescription || ''}</p>
-
           </div>
         </div>
       `;
@@ -63,10 +62,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <img src="${spotlight.image || 'images/placeholder.jpg'}" alt="${spotlight.title}">
               </div>
               <div class="spotlight-content">
-                <span class="badge badge-featured">Featured Program</span>
+                <span class="badge badge-featured">Upcoming Program</span>
                 <h3 style="font-size: 2.5rem; margin-bottom: 1rem;">${spotlight.title}</h3>
                 <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 0;">${spotlight.shortDescription || ''}</p>
-
               </div>
             </div>
           </div>
