@@ -139,7 +139,7 @@ window.ImpactData = {
         .single();
       
       if (error && error.code !== 'PGRST116') throw error;
-      return data || fallbackSpotlight;
+      return data || null;
     } catch (err) {
       console.warn('Supabase fetch failed for spotlight, using fallback data.', err);
       return fallbackSpotlight;
@@ -153,7 +153,7 @@ window.ImpactData = {
         .select('*')
         .order('createdAt', { ascending: false });
       if (error) throw error;
-      return (data && data.length > 0) ? data : [fallbackSpotlight];
+      return data;
     } catch (err) {
       console.warn('Supabase fetch failed for spotlights, using fallback data.', err);
       return [fallbackSpotlight];

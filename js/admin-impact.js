@@ -348,8 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('sl-stat1').value = sl.impactStat1 || '';
     document.getElementById('sl-stat2').value = sl.impactStat2 || '';
     document.getElementById('sl-stat3').value = sl.impactStat3 || '';
-    document.getElementById('sl-btn-text').value = sl.buttonText || 'View Program';
-    document.getElementById('sl-btn-link').value = sl.buttonLink || '#';
+
     document.getElementById('sl-status').value = sl.status || 'Active';
     document.getElementById('sl-image-url').value = sl.image && sl.image.startsWith('http') ? sl.image : '';
     
@@ -394,8 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
       impactStat1: document.getElementById('sl-stat1').value,
       impactStat2: document.getElementById('sl-stat2').value,
       impactStat3: document.getElementById('sl-stat3').value,
-      buttonText: document.getElementById('sl-btn-text').value,
-      buttonLink: document.getElementById('sl-btn-link').value,
+
       status: document.getElementById('sl-status').value,
       isSpotlight: true,
       updatedAt: new Date().toISOString()

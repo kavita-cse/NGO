@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               ${spotlight.impactStat2 ? `<div class="stat-item"><i class="fas fa-map-marker-alt"></i> ${spotlight.impactStat2}</div>` : ''}
               ${spotlight.impactStat3 ? `<div class="stat-item"><i class="fas fa-globe"></i> ${spotlight.impactStat3}</div>` : ''}
             </div>
-            <a href="${spotlight.buttonLink || '#'}" class="btn" style="width: max-content;">${spotlight.buttonText || 'View Program'} <i class="fas fa-arrow-right ml-1" style="margin-left: 8px;"></i></a>
+
           </div>
         </div>
       `;
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                   ${spotlight.impactStat2 ? `<div class="stat-item"><i class="fas fa-map-marker-alt"></i> ${spotlight.impactStat2}</div>` : ''}
                   ${spotlight.impactStat3 ? `<div class="stat-item"><i class="fas fa-globe"></i> ${spotlight.impactStat3}</div>` : ''}
                 </div>
-                <a href="${spotlight.buttonLink || '#'}" class="btn" style="width: max-content;">${spotlight.buttonText || 'View Program'} <i class="fas fa-arrow-right ml-1" style="margin-left: 8px;"></i></a>
+
               </div>
             </div>
           </div>

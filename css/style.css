@@ -809,7 +809,8 @@ a {
   border-radius: var(--radius-lg);
   overflow: hidden;
   transition: var(--transition);
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
+  max-height: 320px;
 }
 
 .spotlight-card:hover {
@@ -819,19 +820,20 @@ a {
 
 .spotlight-img {
   flex: 1.2;
-  min-width: 300px;
+  min-width: 220px;
+  max-width: 320px;
 }
 
 .spotlight-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  min-height: 400px;
+  min-height: 260px;
 }
 
 .spotlight-content {
   flex: 1;
-  padding: 4rem 3rem;
+  padding: 1.5rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1145,8 +1147,9 @@ a {
   .hero-content p { margin: 0 auto 2rem; }
   .hero-image-wrapper { height: 400px; }
   .stats-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .spotlight-card { flex-direction: column; }
-  .spotlight-img img { min-height: 250px; }
+  .spotlight-card { flex-direction: column; max-height: none; }
+  .spotlight-img { max-width: 100%; }
+  .spotlight-img img { min-height: 200px; }
   .modal-content { flex-direction: column; overflow-y: auto; }
   .modal-img { width: 100%; height: 250px; flex: none; }
   .modal-body { overflow-y: visible; padding: 2rem; }

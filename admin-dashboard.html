@@ -194,8 +194,6 @@
             <div class="form-group"><label class="form-label">Impact Stat 1</label><input type="text" id="sl-stat1" class="form-control" placeholder="e.g. 200+ Volunteers" /></div>
             <div class="form-group"><label class="form-label">Impact Stat 2</label><input type="text" id="sl-stat2" class="form-control" placeholder="e.g. 5 Areas Covered" /></div>
             <div class="form-group"><label class="form-label">Impact Stat 3</label><input type="text" id="sl-stat3" class="form-control" placeholder="e.g. 500+ Reached" /></div>
-            <div class="form-group"><label class="form-label">Button Text</label><input type="text" id="sl-btn-text" class="form-control" value="View Program" /></div>
-            <div class="form-group"><label class="form-label">Button Link</label><input type="text" id="sl-btn-link" class="form-control" value="#" /></div>
             <div class="form-group"><label class="form-label">Status</label>
               <select id="sl-status" class="form-control">
                 <option value="Active">Active</option>
@@ -226,7 +224,16 @@
           <input type="hidden" id="pt-id" />
           <div class="form-grid">
             <div class="form-group"><label class="form-label">Title *</label><input type="text" id="pt-title" class="form-control" required /></div>
-            <div class="form-group"><label class="form-label">Category</label><input type="text" id="pt-category" class="form-control" /></div>
+            <div class="form-group"><label class="form-label">Category</label>
+              <select id="pt-category" class="form-control">
+                <option value="">-- Select Category --</option>
+                <option value="Awareness">Awareness</option>
+                <option value="Environment">Environment</option>
+                <option value="Education">Education</option>
+                <option value="Health">Health</option>
+                <option value="Community Support">Community Support</option>
+              </select>
+            </div>
             <div class="form-group"><label class="form-label">Date</label><input type="text" id="pt-date" class="form-control" /></div>
             <div class="form-group"><label class="form-label">Location</label><input type="text" id="pt-location" class="form-control" /></div>
             <div class="form-group full-width"><label class="form-label">Image (URL or Upload)</label>
