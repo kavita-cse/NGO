@@ -134,6 +134,9 @@
     }
 
     /* New Professional Split Layout */
+    .collab-intro-section {
+      padding: 5rem 2rem;
+    }
     .collab-split-section {
       display: flex;
       min-height: 80vh;
@@ -166,7 +169,31 @@
         flex-direction: column;
       }
       .collab-split-content {
-        padding: 4rem 2rem;
+        padding: 4rem 1.5rem !important;
+      }
+      .collab-split-image {
+        min-height: 350px;
+      }
+    }
+    @media (max-width: 600px) {
+      .collab-intro-section {
+        padding: 3rem 1.5rem;
+      }
+      .collab-split-content {
+        padding: 2rem 0.5rem !important;
+      }
+      .collab-split-image {
+        min-height: 250px;
+      }
+      .collab-form-card {
+        padding: 1.5rem 1rem;
+      }
+      .collab-form-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+      }
+      .form-control {
+        padding: 0.7rem 0.8rem;
       }
     }
   </style>
@@ -206,7 +233,7 @@
       </div>
     </section>
 
-    <section class="container" style="padding: 5rem 2rem; max-width: 900px; margin: 0 auto;">
+    <section class="container collab-intro-section" style="max-width: 900px; margin: 0 auto;">
       <div class="collab-content fade-in-up">
         <h1 style="font-size: 4rem; color: var(--primary-color); margin-bottom: 1.5rem; font-weight: 800; letter-spacing: -1px;">Collaborate With Us</h1>
         <p style="font-size: 1.25rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 3.5rem;">
@@ -241,7 +268,7 @@
       </div>
 
       <!-- Right: Content & Form -->
-      <div class="collab-split-content fade-in-up" style="animation-delay: 0.2s; padding-top: 4rem; padding-bottom: 4rem;">
+      <div class="collab-split-content fade-in-up" style="animation-delay: 0.2s;">
         <div class="collab-content-inner">
           <div class="collab-form-card">
             <h3>Start a Partnership</h3>

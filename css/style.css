@@ -188,32 +188,20 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  overflow: hidden;
-  position: relative;
-  background: #fff6e2; /* Seamlessly matches the cream background of the logo #FFF6E2 */
-  border: none;
-  box-shadow: none;
-  padding: 0;
-  margin: 0;
+  text-decoration: none;
 }
 
 .logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transform: scale(1.32); /* Scales up the inner logo to 85-90% of the circle, cropping the outer border ring */
+  max-height: 56px;
+  width: auto;
+  object-fit: contain;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
   background: transparent;
-  box-shadow: none;
 }
 
 .logo img:hover {
-  transform: scale(1.42) rotate(2deg); /* Interactive micro-animation */
+  transform: scale(1.05); /* Gentle scale on hover instead of wild rotation */
 }
 
 .nav-links {
@@ -1457,38 +1445,7 @@ textarea.form-control {
     padding: 0 0.75rem;
   }
 
-  .nav-container {
-    padding: 0.5rem 1rem;
-    min-height: 64px;
-    border-radius: 12px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    justify-content: flex-start;
-    gap: 1rem;
-  }
-
-  .nav-container::-webkit-scrollbar { display: none; }
-
-  .logo {
-    flex-shrink: 0;
-  }
-
-  .logo a {
-    width: 44px;
-    height: 44px;
-  }
-
-  .nav-links {
-    gap: 1.1rem;
-    flex-shrink: 0;
-    white-space: nowrap;
-  }
-
-  .nav-links a {
-    font-size: 0.85rem;
-    padding: 0.4rem 0;
-  }
+  /* Conflicting horizontal nav styles removed for mobile to allow standard hamburger menu */
 
   /* --- Hero Section --- */
   .hero-section {
@@ -1636,9 +1593,14 @@ textarea.form-control {
     gap: 1.5rem;
   }
 
+  .highlights-wrapper {
+    padding: 1rem 0 0.5rem 0 !important;
+  }
+
   .filter-container {
     gap: 0.6rem;
     padding: 0 0.25rem;
+    margin-bottom: 1.5rem !important;
   }
 
   .filter-pill {
@@ -2039,7 +2001,7 @@ textarea.form-control {
 /* ============================================================
    MOBILE — max-width 767px
    ============================================================ */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
 
   /* Global overflow guard */
   html, body { overflow-x: hidden; width: 100%; }
@@ -2054,7 +2016,17 @@ textarea.form-control {
   /* All inline section padding overridden */
   main > section,
   main > .section,
-  .section { padding: 2rem 0 !important; }
+  .section { padding: 1.5rem 0 !important; }
+
+  /* Utility Spacing Overrides for Mobile */
+  .mb-2 { margin-bottom: 1rem !important; }
+  .mb-3 { margin-bottom: 1.25rem !important; }
+  .mb-4 { margin-bottom: 1.5rem !important; }
+  .mb-1-5 { margin-bottom: 1rem !important; }
+  .gap-2 { gap: 1rem !important; }
+  .gap-3 { gap: 1.25rem !important; }
+  .gap-4 { gap: 1.5rem !important; }
+
 
   /* ── NAVIGATION ── */
   .header { top: 0; padding: 0 0.75rem; }
@@ -2074,7 +2046,7 @@ textarea.form-control {
   .hamburger { display: flex; }
 
   /* Logo sizing */
-  .logo a { width: 44px; height: 44px; }
+  .logo img { max-height: 44px; }
 
   /* Nav links: hidden by default, shown when .open */
   .nav-links {
@@ -2273,6 +2245,7 @@ textarea.form-control {
     width: 100% !important;
   }
   .card-light.mb-1-5 { min-width: unset !important; }
+  .card { padding: 1.5rem 1rem; }
 
   /* ── CONTACT PAGE ── */
   .flex.gap-4.flex-wrap .flex-1 {
@@ -2354,7 +2327,7 @@ textarea.form-control {
    EXTRA SMALL — max-width 480px (small Androids)
    ============================================================ */
 @media (max-width: 480px) {
-  .container { padding-left: 0.9rem !important; padding-right: 0.9rem !important; }
+  .container { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
   h1 { font-size: 1.75rem !important; }
   h2 { font-size: 1.45rem !important; }
   h3 { font-size: 1.2rem !important; }
